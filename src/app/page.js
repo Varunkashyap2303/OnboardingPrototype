@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings } from 'lucide-react';
+import CarOwnerChart from '@/components/carOwnerChart';
 
 const hourlyData = [
   { hour: '6AM', occupied: 45, revenue: 180 },
@@ -125,8 +126,12 @@ export default function Home() {
           </Card>
         </div>
 
+        <div className="grid overflow-x-auto">
+          <CarOwnerChart />
+          </div>
+
         {/* Current Status */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
           <Card className="lg:col-span-2 hover:shadow-lg transition-shadow duration-200">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

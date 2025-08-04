@@ -11,11 +11,12 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.12",
+    "@tremor/react": "^3.18.7",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.536.0",
     "next": "15.4.5",
-    "react": "19.1.0",
-    "react-dom": "19.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "recharts": "^3.1.0",
     "tailwind-merge": "^3.3.1"
   },
