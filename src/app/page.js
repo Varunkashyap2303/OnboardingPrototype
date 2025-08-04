@@ -9,6 +9,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, P
 import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings } from 'lucide-react';
 import CarOwnerChart from '@/components/carOwnerChart';
 import PopulationLineChart from '@/components/populationLineChart';
+import ParkingMap from '@/components/parkingMap';
 
 const hourlyData = [
   { hour: '6AM', occupied: 45, revenue: 180 },
@@ -130,6 +131,21 @@ export default function Home() {
         <div>
           <CarOwnerChart />
           </div>
+        
+        <Card className="my-8 hover:shadow-lg transition-shadow duration-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-black">
+              <MapPin className="h-5 w-5 text-blue-600" />
+              Map View of Parking Spots
+            </CardTitle>
+            <CardDescription className="text-black">
+              Real-time mock availability of parking bays
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="h-[400px] p-0 rounded-b-lg overflow-hidden">
+            <ParkingMap />
+          </CardContent>
+        </Card>
 
         {/* Current Status */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
