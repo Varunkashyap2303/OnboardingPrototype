@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings } from 'lucide-react';
 import CarOwnerChart from '@/components/carOwnerChart';
+import PopulationLineChart from '@/components/populationLineChart';
 
 const hourlyData = [
   { hour: '6AM', occupied: 45, revenue: 180 },
@@ -102,7 +103,7 @@ export default function Home() {
               <p className="text-xs text-green-100">{occupancyRate}% occupancy rate</p>
             </CardContent>
           </Card>
-
+{/* 
           <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-orange-100">Today's Revenue</CardTitle>
@@ -112,7 +113,7 @@ export default function Home() {
               <div className="text-2xl font-bold">${todayRevenue.toLocaleString()}</div>
               <p className="text-xs text-orange-100">+12% from yesterday</p>
             </CardContent>
-          </Card>
+          </Card> */}
 
           <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -126,7 +127,7 @@ export default function Home() {
           </Card>
         </div>
 
-        <div className="grid overflow-x-auto">
+        <div>
           <CarOwnerChart />
           </div>
 
@@ -169,7 +170,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="hover:shadow-lg transition-shadow duration-200">
+          {/* <Card className="hover:shadow-lg transition-shadow duration-200">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-green-600" />
@@ -193,7 +194,7 @@ export default function Home() {
                 ))}
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
 
         {/* Analytics Tabs */}
@@ -356,7 +357,7 @@ export default function Home() {
         </Tabs>
 
         {/* Recent Activity */}
-        <Card className="mt-8 hover:shadow-lg transition-shadow duration-200">
+        {/* <Card className="mt-8 hover:shadow-lg transition-shadow duration-200">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
             <CardDescription>Latest parking transactions and events</CardDescription>
@@ -388,7 +389,7 @@ export default function Home() {
               ))}
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
       </main>
     </div>
   );

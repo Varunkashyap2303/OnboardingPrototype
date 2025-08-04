@@ -5,63 +5,51 @@ import { AreaChart, Card } from '@tremor/react';
 const data = [
   {
     year: '2011',
-    'Vehicle Ownership': 2221500,
-    'Population': 3500249
+    'Vehicle Ownership': 2221500
   },
   {
     year: '2012',
-    'Vehicle Ownership': 2250120,
-    'Population': 3520000
+    'Vehicle Ownership': 2250120
   },
   {
     year: '2013',
-    'Vehicle Ownership': 2278900,
-    'Population': 3540000
+    'Vehicle Ownership': 2278900
   },
   {
     year: '2014',
-    'Vehicle Ownership': 2304500,
-    'Population': 3560000
+    'Vehicle Ownership': 2304500
   },
   {
     year: '2015',
-    'Vehicle Ownership': 2331200,
-    'Population': 3580000
+    'Vehicle Ownership': 2331200
   },
   {
     year: '2016',
-    'Vehicle Ownership': 2357800,
-    'Population': 3600000
+    'Vehicle Ownership': 2357800
   },
   {
     year: '2017',
-    'Vehicle Ownership': 2384500,
-    'Population': 3620000
+    'Vehicle Ownership': 2384500
   },
   {
     year: '2018',
-    'Vehicle Ownership': 2411200,
-    'Population': 3640000
+    'Vehicle Ownership': 2411200
   },
   {
     year: '2019',
-    'Vehicle Ownership': 2437800,
-    'Population': 3660000
+    'Vehicle Ownership': 2437800
   },
   {
     year: '2020',
-    'Vehicle Ownership': 2464500,
-    'Population': 3680000
+    'Vehicle Ownership': 2464500
   },
   {
     year: '2021',
-    'Vehicle Ownership': 2491200,
-    'Population': 3700000
+    'Vehicle Ownership': 2491200
   },
   {
     year: '2022',
-    'Vehicle Ownership': 2517800,
-    'Population': 3720000
+    'Vehicle Ownership': 2517800
   },
 ];
 
@@ -99,27 +87,27 @@ export default function Example() {
                 latest vehicle ownership
               </p>
             </li>
-            <li>
+            {/* <li>
               <div className="flex items-center space-x-2">
                 <span
-                  className="size-3 shrink-0 rounded-sm bg-gray-500"
+                  className="size-3 shrink-0 rounded-sm bg-red-500"
                   aria-hidden={true}
                 />
-                <p className="font-semibold text-gray-800">
-                  3700000
+                <p className="font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
+                  1,397
                 </p>
               </div>
-              <p className="text-tremor-default text-gray-800">
-                Population
+              <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
+                Errors
               </p>
-            </li>
+            </li> */}
           </ul>
           <AreaChart
             data={data}
             index="year"
             type="stacked"
-            colors={['blue', 'gray']}
-            categories={['Vehicle Ownership', 'Population']}
+            colors={['blue']}
+            categories={['Vehicle Ownership']}
             showLegend={false}
             showGradient={true}
             yAxisWidth={150}
