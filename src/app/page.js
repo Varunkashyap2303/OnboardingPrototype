@@ -66,10 +66,10 @@ export default function Home() {
               <h1 className="text-2xl font-bold text-slate-900">ParkSmart</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Badge variant="secondary" className="text-sm">
+              {/* <Badge variant="secondary" className="text-sm">
                 <Clock className="h-4 w-4 mr-1" />
                 {currentTime.toLocaleTimeString()}
-              </Badge>
+              </Badge> */}
               <Button variant="outline" size="sm">
                 <Settings className="h-4 w-4 mr-2" />
                 Settings
@@ -135,11 +135,11 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
           <Card className="lg:col-span-2 hover:shadow-lg transition-shadow duration-200">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-black">
                 <TrendingUp className="h-5 w-5 text-blue-600" />
                 Live Occupancy Status
               </CardTitle>
-              <CardDescription>Real-time parking availability across locations</CardDescription>
+              <CardDescription className="text-black">Real-time parking availability across locations</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -199,20 +199,20 @@ export default function Home() {
 
         {/* Analytics Tabs */}
         <Tabs defaultValue="hourly" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 lg:w-96">
-            <TabsTrigger value="hourly">Hourly Trends</TabsTrigger>
-            <TabsTrigger value="weekly">Weekly Overview</TabsTrigger>
-            <TabsTrigger value="locations">Location Breakdown</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="hourly" className="text-black data-[state=active]:text-white data-[state=active]:bg-black">Hourly Trends</TabsTrigger>
+            <TabsTrigger value="weekly" className="text-black data-[state=active]:text-white data-[state=active]:bg-black">Weekly Overview</TabsTrigger>
+            <TabsTrigger value="locations" className="text-black data-[state=active]:text-white data-[state=active]:bg-black">Location Breakdown</TabsTrigger>
           </TabsList>
 
           <TabsContent value="hourly" className="space-y-6">
             <Card className="hover:shadow-lg transition-shadow duration-200">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-black">
                   <Clock className="h-5 w-5 text-blue-600" />
                   Today's Hourly Usage
                 </CardTitle>
-                <CardDescription>Parking occupancy and revenue by hour</CardDescription>
+                <CardDescription className="text-black">Parking occupancy and revenue by hour</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-80">
@@ -244,11 +244,11 @@ export default function Home() {
           <TabsContent value="weekly" className="space-y-6">
             <Card className="hover:shadow-lg transition-shadow duration-200">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-black">
                   <Calendar className="h-5 w-5 text-green-600" />
                   Weekly Performance
                 </CardTitle>
-                <CardDescription>7-day occupancy and revenue trends</CardDescription>
+                <CardDescription className="text-black">7-day occupancy and revenue trends</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-80">
@@ -287,11 +287,11 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="hover:shadow-lg transition-shadow duration-200">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-black">
                     <Users className="h-5 w-5 text-orange-600" />
                     Location Distribution
                   </CardTitle>
-                  <CardDescription>Usage percentage by parking area</CardDescription>
+                  <CardDescription className="text-black">Usage percentage by parking area</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-64">
@@ -326,8 +326,8 @@ export default function Home() {
 
               <Card className="hover:shadow-lg transition-shadow duration-200">
                 <CardHeader>
-                  <CardTitle>Location Details</CardTitle>
-                  <CardDescription>Detailed breakdown by area</CardDescription>
+                  <CardTitle className="text-black">Location Details</CardTitle>
+                  <CardDescription className="text-black">Detailed breakdown by area</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
