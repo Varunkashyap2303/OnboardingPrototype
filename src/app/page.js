@@ -6,10 +6,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings } from 'lucide-react';
+import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings, LogOut } from 'lucide-react';
 import CarOwnerChart from '@/components/carOwnerChart';
-import PopulationLineChart from '@/components/populationLineChart';
-// import ParkingMap from '@/components/parkingMap';
+import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 
 const hourlyData = [
@@ -61,6 +60,14 @@ export default function Home() {
   const occupancyRate = Math.round((occupiedSpots / totalSpots) * 100);
   const availableSpots = totalSpots - occupiedSpots;
 
+  //for login page
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      router.push('/login');
+    }
+  }, [router]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
@@ -78,6 +85,17 @@ export default function Home() {
                 <Clock className="h-4 w-4 mr-1" />
                 {currentTime.toLocaleTimeString()}
               </Badge> */}
+              <Button
+  variant="outline"
+  size="sm"
+  onClick={() => {
+    localStorage.removeItem('loggedIn');
+    window.location.href = '/login';
+  }}
+>
+  <LogOut className="h-4 w-4 mr-2" />
+  Logout
+</Button>
               <Button variant="outline" size="sm">
                 <Settings className="h-4 w-4 mr-2" />
                 Settings
@@ -138,7 +156,8 @@ export default function Home() {
         <div>
           <CarOwnerChart />
           </div>
-        
+
+        {/* Parking map */}
         <Card className="my-8 hover:shadow-lg transition-shadow duration-200">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-black">
@@ -149,7 +168,7 @@ export default function Home() {
               Real-time mock availability of parking bays
             </CardDescription>
           </CardHeader>
-          <CardContent className="h-[400px] p-0 rounded-b-lg overflow-hidden">
+          <CardContent className="h-[400px]">
             <ParkingMap />
           </CardContent>
         </Card>
