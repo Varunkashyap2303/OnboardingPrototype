@@ -9,7 +9,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, P
 import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings } from 'lucide-react';
 import CarOwnerChart from '@/components/carOwnerChart';
 import PopulationLineChart from '@/components/populationLineChart';
-import ParkingMap from '@/components/parkingMap';
+// import ParkingMap from '@/components/parkingMap';
+import dynamic from 'next/dynamic';
 
 const hourlyData = [
   { hour: '6AM', occupied: 45, revenue: 180 },
@@ -38,6 +39,12 @@ const weeklyTrends = [
   { day: 'Sat', occupancy: 75, revenue: 3000 },
   { day: 'Sun', occupancy: 65, revenue: 2600 },
 ];
+
+const ParkingMap = dynamic(() => import('@/components/parkingMap'), { 
+  ssr: false,
+  loading: () => <div className='h-[400px] w-full flex items-center justify-center'>Loading map...</div>,
+});
+
 
 export default function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());

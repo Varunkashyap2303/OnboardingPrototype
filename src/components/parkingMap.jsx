@@ -1,4 +1,5 @@
-import React from 'react';
+// 'use client';
+import React, { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -25,12 +26,13 @@ const customIcon = (color) =>
   });
 
 const ParkingMap = () => {
+
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div className='h-full w-full'>
       <MapContainer
         center={[-37.814, 144.96332]}
         zoom={15}
-        style={{ height: '400px', width: '100%' }}
+        style={{ height: '100%', width: '100%' }}
       >
         <TileLayer
           attribution="&copy; OpenStreetMap contributors"
