@@ -174,10 +174,10 @@ const valueFormatter = (number) => {
 export default function VehicleChartTabs() {
   return (
     <>
-      <h3 className="text-black text-tremor-title font-semibold">
+      <h3 className="text-black text-xl sm:text-lg font-semibold">
         Vehicle Ownership vs Population
       </h3>
-      <p className="mt-1 text-black text-tremor-default">
+      <p className="mt-1 text-black text-sm md:text-base">
         Data comparison from 2011 to 2022
       </p>
 
@@ -188,7 +188,7 @@ export default function VehicleChartTabs() {
               <>
                 <Tab
                   key={tab.name}
-                  className="py-4 pl-5 pr-12 text-left ui-selected:bg-white ui-selected:shadow-inner ui-selected:font-semibold ui-focus-visible:ring-2 ui-focus-visible:ring-blue-400 ui-focus-visible:ring-offset-2"
+                  className="py-4 pl-5 pr-12 text-left ui-selected:bg-white ui-selected:shadow-inner ui-selected:font-semibold ui-focus-visible:ring-2 ui-focus-visible:ring-blue-400 ui-focus-visible:ring-offset-2 text-xs sm:text-sm md:text-base"
                 >
                   <span className="block text-black">{tab.name}</span>
                   <span className="mt-1 block text-tremor-metric font-semibold text-black">
@@ -207,7 +207,10 @@ export default function VehicleChartTabs() {
 
           <TabPanels>
             {summary.map((tab) => (
-              <TabPanel key={tab.name} className="p-6">
+              <TabPanel
+                key={tab.name}
+                className="p-6 text-xs sm:text-sm md:text-base"
+              >
                 <AreaChart
                   data={data}
                   index="year"
@@ -216,7 +219,7 @@ export default function VehicleChartTabs() {
                   showGradient={true}
                   showLegend={false}
                   yAxisWidth={60}
-                  className="hidden h-96 sm:block text-black"
+                  className="hidden h-96 sm:block text-black text-xs sm:text-sm md:text-base"
                   customTooltip={({ payload }) => (
                     <div className="bg-white p-2 rounded text-black shadow">
                       {payload?.map((entry, index) => (

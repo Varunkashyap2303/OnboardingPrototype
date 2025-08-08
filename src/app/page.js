@@ -204,7 +204,10 @@ export default function Home() {
           </Card>
         </div> */}
 
-        <div className="w-full" id="data-insight">
+        <div
+          className="w-full"
+          id="data-insight text-xs sm:text-sm md:text-base"
+        >
           <CarOwnerChart className="w-full" />
         </div>
 
@@ -214,16 +217,16 @@ export default function Home() {
           className="my-8 hover:shadow-lg transition-shadow duration-200"
         >
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-black">
+            <CardTitle className="flex items-center gap-2 text-black text-sm sm:text-lg md:text-base">
               <MapPin className="h-5 w-5 text-blue-600" />
               Map View of Parking Spots
             </CardTitle>
-            <CardDescription className="text-black">
+            <CardDescription className="text-black text-xs sm:text-sm md:text-base">
               Real-time mock availability of parking bays
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[400px]">
-            <ParkingMap />
+            {/* <ParkingMap /> */}
           </CardContent>
         </Card>
 
