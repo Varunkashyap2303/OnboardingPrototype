@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Car, LogOut, Settings } from 'lucide-react';
 
 
-const PASSWORD = '5032TA30'; 
+const PASSWORD = process.env.NEXT_PUBLIC_LOGIN_PASSWORD;
 
 export default function LoginPage() {
   const router = useRouter();
