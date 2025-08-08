@@ -6,7 +6,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings } from 'lucide-react';
+import { Car, MapPin, DollarSign, Clock, TrendingUp, Users, Calendar, Settings, LogOut } from 'lucide-react';
+import CarOwnerChart from '@/components/carOwnerChart';
+import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 
 const hourlyData = [
   { hour: '6AM', occupied: 45, revenue: 180 },
@@ -36,6 +39,12 @@ const weeklyTrends = [
   { day: 'Sun', occupancy: 65, revenue: 2600 },
 ];
 
+const ParkingMap = dynamic(() => import('@/components/parkingMap'), { 
+  ssr: false,
+  loading: () => <div className='h-[400px] w-full flex items-center justify-center'>Loading map...</div>,
+});
+
+
 export default function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [totalSpots] = useState(450);
@@ -51,31 +60,49 @@ export default function Home() {
   const occupancyRate = Math.round((occupiedSpots / totalSpots) * 100);
   const availableSpots = totalSpots - occupiedSpots;
 
+  //for login page
+  const router = useRouter();
+  useEffect(() => {
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      router.push('/login');
+    }
+  }, [router]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Car className="h-6 w-6 text-white" />
-              </div>
-              <h1 className="text-2xl font-bold text-slate-900">ParkSmart</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Badge variant="secondary" className="text-sm">
-                <Clock className="h-4 w-4 mr-1" />
-                {currentTime.toLocaleTimeString()}
-              </Badge>
-              <Button variant="outline" size="sm">
-                <Settings className="h-4 w-4 mr-2" />
-                Settings
-              </Button>
-            </div>
-          </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center h-auto gap-2 py-4">
+      <div className="flex items-center space-x-3">
+        <div className="bg-blue-600 p-2 rounded-lg">
+          <Car className="h-6 w-6 text-white" />
         </div>
-      </header>
+        <h1 className="text-lg sm:text-sm font-bold text-slate-900 truncate">ParkSmart</h1>
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full sm:w-auto"
+          onClick={() => {
+            localStorage.removeItem('loggedIn');
+            window.location.href = '/login';
+          }}
+        >
+          <LogOut className="h-4 w-4 mr-2" />
+          <span className="hidden sm:inline">Logout</span>
+        </Button>
+        <Button variant="outline" size="sm" className="flex items-center space-x-2">
+          <Settings className="h-4 w-4 mr-2" />
+          <span className="hidden sm:inline">Settings</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+</header>
+
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Stats */}
@@ -101,7 +128,7 @@ export default function Home() {
               <p className="text-xs text-green-100">{occupancyRate}% occupancy rate</p>
             </CardContent>
           </Card>
-
+{/* 
           <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-orange-100">Today's Revenue</CardTitle>
@@ -111,7 +138,7 @@ export default function Home() {
               <div className="text-2xl font-bold">${todayRevenue.toLocaleString()}</div>
               <p className="text-xs text-orange-100">+12% from yesterday</p>
             </CardContent>
-          </Card>
+          </Card> */}
 
           <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -125,15 +152,35 @@ export default function Home() {
           </Card>
         </div>
 
+        <div className='w-full max-w-full'>
+          <CarOwnerChart className='w-full max-w-full' />
+          </div>
+
+        {/* Parking map */}
+        <Card className="my-8 hover:shadow-lg transition-shadow duration-200">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-black">
+              <MapPin className="h-5 w-5 text-blue-600" />
+              Map View of Parking Spots
+            </CardTitle>
+            <CardDescription className="text-black">
+              Real-time mock availability of parking bays
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="h-[400px]">
+            <ParkingMap />
+          </CardContent>
+        </Card>
+
         {/* Current Status */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
           <Card className="lg:col-span-2 hover:shadow-lg transition-shadow duration-200">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2 text-black">
                 <TrendingUp className="h-5 w-5 text-blue-600" />
                 Live Occupancy Status
               </CardTitle>
-              <CardDescription>Real-time parking availability across locations</CardDescription>
+              <CardDescription className="text-black">Real-time parking availability across locations</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -163,50 +210,24 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
-
-          <Card className="hover:shadow-lg transition-shadow duration-200">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-green-600" />
-                Popular Locations
-              </CardTitle>
-              <CardDescription>Most used parking areas</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {locationData.map((location, index) => (
-                  <div key={location.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                    <div className="flex items-center gap-3">
-                      <div 
-                        className="w-3 h-3 rounded-full" 
-                        style={{ backgroundColor: location.color }}
-                      />
-                      <span className="font-medium text-slate-900">{location.name}</span>
-                    </div>
-                    <Badge variant="secondary">{location.value}%</Badge>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Analytics Tabs */}
         <Tabs defaultValue="hourly" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 lg:w-96">
-            <TabsTrigger value="hourly">Hourly Trends</TabsTrigger>
-            <TabsTrigger value="weekly">Weekly Overview</TabsTrigger>
-            <TabsTrigger value="locations">Location Breakdown</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="hourly" className="text-black data-[state=active]:text-white data-[state=active]:bg-black">Hourly Trends</TabsTrigger>
+            <TabsTrigger value="weekly" className="text-black data-[state=active]:text-white data-[state=active]:bg-black">Weekly Overview</TabsTrigger>
+            <TabsTrigger value="locations" className="text-black data-[state=active]:text-white data-[state=active]:bg-black">Location Breakdown</TabsTrigger>
           </TabsList>
 
           <TabsContent value="hourly" className="space-y-6">
             <Card className="hover:shadow-lg transition-shadow duration-200">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-black">
                   <Clock className="h-5 w-5 text-blue-600" />
                   Today's Hourly Usage
                 </CardTitle>
-                <CardDescription>Parking occupancy and revenue by hour</CardDescription>
+                <CardDescription className="text-black">Parking occupancy and revenue by hour</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-80">
@@ -238,11 +259,11 @@ export default function Home() {
           <TabsContent value="weekly" className="space-y-6">
             <Card className="hover:shadow-lg transition-shadow duration-200">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
+                <CardTitle className="flex items-center gap-2 text-black">
                   <Calendar className="h-5 w-5 text-green-600" />
                   Weekly Performance
                 </CardTitle>
-                <CardDescription>7-day occupancy and revenue trends</CardDescription>
+                <CardDescription className="text-black">7-day occupancy and revenue trends</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="h-80">
@@ -281,11 +302,11 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <Card className="hover:shadow-lg transition-shadow duration-200">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-black">
                     <Users className="h-5 w-5 text-orange-600" />
                     Location Distribution
                   </CardTitle>
-                  <CardDescription>Usage percentage by parking area</CardDescription>
+                  <CardDescription className="text-black">Usage percentage by parking area</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="h-64">
@@ -320,8 +341,8 @@ export default function Home() {
 
               <Card className="hover:shadow-lg transition-shadow duration-200">
                 <CardHeader>
-                  <CardTitle>Location Details</CardTitle>
-                  <CardDescription>Detailed breakdown by area</CardDescription>
+                  <CardTitle className="text-black">Location Details</CardTitle>
+                  <CardDescription className="text-black">Detailed breakdown by area</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -349,41 +370,6 @@ export default function Home() {
             </div>
           </TabsContent>
         </Tabs>
-
-        {/* Recent Activity */}
-        <Card className="mt-8 hover:shadow-lg transition-shadow duration-200">
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest parking transactions and events</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                { time: '2 minutes ago', event: 'Vehicle entered', location: 'Downtown Plaza - Spot A23', type: 'entry' },
-                { time: '5 minutes ago', event: 'Payment completed', location: 'Business District - Spot B15', type: 'payment' },
-                { time: '8 minutes ago', event: 'Vehicle exited', location: 'Shopping Center - Spot C07', type: 'exit' },
-                { time: '12 minutes ago', event: 'Spot reserved', location: 'University Area - Spot D12', type: 'reservation' },
-                { time: '15 minutes ago', event: 'Vehicle entered', location: 'Downtown Plaza - Spot A45', type: 'entry' },
-              ].map((activity, index) => (
-                <div key={index} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-2 h-2 rounded-full ${
-                      activity.type === 'entry' ? 'bg-green-500' :
-                      activity.type === 'exit' ? 'bg-blue-500' :
-                      activity.type === 'payment' ? 'bg-orange-500' :
-                      'bg-purple-500'
-                    }`} />
-                    <div>
-                      <div className="font-medium text-slate-900">{activity.event}</div>
-                      <div className="text-sm text-slate-500">{activity.location}</div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-slate-500">{activity.time}</div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
       </main>
     </div>
   );
