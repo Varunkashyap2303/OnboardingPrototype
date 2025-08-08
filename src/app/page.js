@@ -72,38 +72,37 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Header */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="bg-blue-600 p-2 rounded-lg">
-                <Car className="h-6 w-6 text-white" />
-              </div>
-              <h1 className="text-2xl font-bold text-slate-900">ParkSmart</h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              {/* <Badge variant="secondary" className="text-sm">
-                <Clock className="h-4 w-4 mr-1" />
-                {currentTime.toLocaleTimeString()}
-              </Badge> */}
-              <Button
-  variant="outline"
-  size="sm"
-  onClick={() => {
-    localStorage.removeItem('loggedIn');
-    window.location.href = '/login';
-  }}
->
-  <LogOut className="h-4 w-4 mr-2" />
-  Logout
-</Button>
-              <Button variant="outline" size="sm">
-                <Settings className="h-4 w-4 mr-2" />
-                Settings
-              </Button>
-            </div>
-          </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center h-auto gap-2 py-4">
+      <div className="flex items-center space-x-3">
+        <div className="bg-blue-600 p-2 rounded-lg">
+          <Car className="h-6 w-6 text-white" />
         </div>
-      </header>
+        <h1 className="text-lg sm:text-sm font-bold text-slate-900 truncate">ParkSmart</h1>
+      </div>
+
+      <div className="flex items-center space-x-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full sm:w-auto"
+          onClick={() => {
+            localStorage.removeItem('loggedIn');
+            window.location.href = '/login';
+          }}
+        >
+          <LogOut className="h-4 w-4 mr-2" />
+          <span className="hidden sm:inline">Logout</span>
+        </Button>
+        <Button variant="outline" size="sm" className="flex items-center space-x-2">
+          <Settings className="h-4 w-4 mr-2" />
+          <span className="hidden sm:inline">Settings</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+</header>
+
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Stats */}
@@ -153,8 +152,8 @@ export default function Home() {
           </Card>
         </div>
 
-        <div>
-          <CarOwnerChart />
+        <div className='w-full max-w-full'>
+          <CarOwnerChart className='w-full max-w-full' />
           </div>
 
         {/* Parking map */}
@@ -211,32 +210,6 @@ export default function Home() {
               </div>
             </CardContent>
           </Card>
-
-          {/* <Card className="hover:shadow-lg transition-shadow duration-200">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-green-600" />
-                Popular Locations
-              </CardTitle>
-              <CardDescription>Most used parking areas</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {locationData.map((location, index) => (
-                  <div key={location.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
-                    <div className="flex items-center gap-3">
-                      <div 
-                        className="w-3 h-3 rounded-full" 
-                        style={{ backgroundColor: location.color }}
-                      />
-                      <span className="font-medium text-slate-900">{location.name}</span>
-                    </div>
-                    <Badge variant="secondary">{location.value}%</Badge>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card> */}
         </div>
 
         {/* Analytics Tabs */}
@@ -397,41 +370,6 @@ export default function Home() {
             </div>
           </TabsContent>
         </Tabs>
-
-        {/* Recent Activity */}
-        {/* <Card className="mt-8 hover:shadow-lg transition-shadow duration-200">
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest parking transactions and events</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[
-                { time: '2 minutes ago', event: 'Vehicle entered', location: 'Downtown Plaza - Spot A23', type: 'entry' },
-                { time: '5 minutes ago', event: 'Payment completed', location: 'Business District - Spot B15', type: 'payment' },
-                { time: '8 minutes ago', event: 'Vehicle exited', location: 'Shopping Center - Spot C07', type: 'exit' },
-                { time: '12 minutes ago', event: 'Spot reserved', location: 'University Area - Spot D12', type: 'reservation' },
-                { time: '15 minutes ago', event: 'Vehicle entered', location: 'Downtown Plaza - Spot A45', type: 'entry' },
-              ].map((activity, index) => (
-                <div key={index} className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-2 h-2 rounded-full ${
-                      activity.type === 'entry' ? 'bg-green-500' :
-                      activity.type === 'exit' ? 'bg-blue-500' :
-                      activity.type === 'payment' ? 'bg-orange-500' :
-                      'bg-purple-500'
-                    }`} />
-                    <div>
-                      <div className="font-medium text-slate-900">{activity.event}</div>
-                      <div className="text-sm text-slate-500">{activity.location}</div>
-                    </div>
-                  </div>
-                  <div className="text-sm text-slate-500">{activity.time}</div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card> */}
       </main>
     </div>
   );
