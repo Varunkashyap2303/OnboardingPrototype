@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -20,22 +19,9 @@ import {
   Tooltip,
   LineChart,
   Line,
-  PieChart,
-  Pie,
-  Cell,
   ResponsiveContainer,
 } from "recharts";
-import {
-  Car,
-  MapPin,
-  DollarSign,
-  Clock,
-  TrendingUp,
-  Users,
-  Calendar,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { Car, MapPin, Clock, Calendar, LogOut } from "lucide-react";
 import CarOwnerChart from "@/components/carOwnerChart";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -205,8 +191,8 @@ export default function Home() {
         </div> */}
 
         <div
-          className="w-full"
-          id="data-insight text-xs sm:text-sm md:text-base"
+          className="w-full text-xs sm:text-sm md:text-base"
+          id="data-insight"
         >
           <CarOwnerChart className="w-full" />
         </div>
