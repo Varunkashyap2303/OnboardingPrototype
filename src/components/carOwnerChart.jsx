@@ -10,11 +10,11 @@ import {
 import React from "react";
 
 const data = [
-  { year: "2017", "Vehicle Ownership": 209495, Population: 3000000 },
-  { year: "2018", "Vehicle Ownership": 214408, Population: 3200000 },
-  { year: "2019", "Vehicle Ownership": 236429 },
-  { year: "2020", "Vehicle Ownership": 215728 },
-  { year: "2021", "Vehicle Ownership": 188855 },
+  { year: "2017", "Vehicle Ownership": 209495, Population: 59996 },
+  { year: "2018", "Vehicle Ownership": 214408, Population: 62428 },
+  { year: "2019", "Vehicle Ownership": 236429, Population: 65177 },
+  { year: "2020", "Vehicle Ownership": 215728, Population: 67455 },
+  { year: "2021", "Vehicle Ownership": 188855, Population: 69396 },
 ];
 
 const summary = [
