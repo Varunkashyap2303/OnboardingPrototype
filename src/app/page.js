@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -20,22 +19,9 @@ import {
   Tooltip,
   LineChart,
   Line,
-  PieChart,
-  Pie,
-  Cell,
   ResponsiveContainer,
 } from "recharts";
-import {
-  Car,
-  MapPin,
-  DollarSign,
-  Clock,
-  TrendingUp,
-  Users,
-  Calendar,
-  Settings,
-  LogOut,
-} from "lucide-react";
+import { Car, MapPin, Clock, Calendar, LogOut } from "lucide-react";
 import CarOwnerChart from "@/components/carOwnerChart";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
@@ -147,66 +133,15 @@ export default function Home() {
                 <LogOut className="h-4 w-4" />
                 <span className="hidden sm:inline ml-2">Logout</span>
               </Button>
-              {/* <Button variant="outline" size="sm" className="flex items-center space-x-2">
-          <Settings className="h-4 w-4 mr-2" />
-          <span className="hidden sm:inline">Settings</span>
-        </Button> */}
             </div>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-16">
-        {/* Hero Stats */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"> */}
-        {/* <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-blue-100">Total Spots</CardTitle>
-              <MapPin className="h-4 w-4 text-blue-200" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{totalSpots.toLocaleString()}</div>
-              <p className="text-xs text-blue-100">Across all locations</p>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-green-100">Occupied</CardTitle>
-              <Car className="h-4 w-4 text-green-200" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{occupiedSpots.toLocaleString()}</div>
-              <p className="text-xs text-green-100">{occupancyRate}% occupancy rate</p>
-            </CardContent>
-          </Card> */}
-        {/* 
-          <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-orange-100">Today's Revenue</CardTitle>
-              <DollarSign className="h-4 w-4 text-orange-200" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">${todayRevenue.toLocaleString()}</div>
-              <p className="text-xs text-orange-100">+12% from yesterday</p>
-            </CardContent>
-          </Card> */}
-
-        {/* <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white border-0 hover:shadow-lg transition-shadow duration-200">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-purple-100">Avg. Session</CardTitle>
-              <Clock className="h-4 w-4 text-purple-200" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{avgSessionTime}h</div>
-              <p className="text-xs text-purple-100">Average parking duration</p>
-            </CardContent>
-          </Card>
-        </div> */}
-
         <div
-          className="w-full"
-          id="data-insight text-xs sm:text-sm md:text-base"
+          className="w-full text-xs sm:text-sm md:text-base"
+          id="data-insight"
         >
           <CarOwnerChart className="w-full" />
         </div>
@@ -226,49 +161,24 @@ export default function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[400px]">
-            {/* <ParkingMap /> */}
+            <ParkingMap />
           </CardContent>
+          {/* <button
+            onClick={() => {
+              const lat = -37.8179,
+                lon = 144.9691;
+              console.log("[DEBUG] manual fetch", { lat, lon });
+              fetch(`/api/parking?lat=${lat}&lon=${lon}`)
+                .then((r) => r.json())
+                .then((d) => console.log("[DEBUG] response", d));
+            }}
+            className="absolute z-[1000] top-2 left-2 bg-white/90 px-3 py-1 rounded shadow bg-color-black"
+          >
+            Debug Fetch
+          </button> */}
         </Card>
 
         {/* Current Status */}
-        {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
-          <Card className="lg:col-span-2 hover:shadow-lg transition-shadow duration-200">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-black">
-                <TrendingUp className="h-5 w-5 text-blue-600" />
-                Live Occupancy Status
-              </CardTitle>
-              <CardDescription className="text-black">Real-time parking availability across locations</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center p-4 bg-slate-50 rounded-lg">
-                  <div>
-                    <h3 className="font-semibold text-slate-900">Available Spots</h3>
-                    <p className="text-sm text-slate-600">Ready for parking</p>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-green-600">{availableSpots}</div>
-                    <Badge variant="secondary" className="bg-green-100 text-green-800">
-                      {Math.round((availableSpots / totalSpots) * 100)}% free
-                    </Badge>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-                    <div className="text-sm text-blue-600 font-medium">Premium Spots</div>
-                    <div className="text-lg font-semibold text-blue-900">24 available</div>
-                  </div>
-                  <div className="p-3 bg-orange-50 rounded-lg border border-orange-200">
-                    <div className="text-sm text-orange-600 font-medium">Standard Spots</div>
-                    <div className="text-lg font-semibold text-orange-900">84 available</div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div> */}
 
         {/* Analytics Tabs */}
         <Tabs defaultValue="hourly" className="space-y-6">
@@ -285,12 +195,6 @@ export default function Home() {
             >
               Weekly Overview
             </TabsTrigger>
-            {/* <TabsTrigger
-              value="locations"
-              className="text-black data-[state=active]:text-white data-[state=active]:bg-black"
-            >
-              Location Breakdown
-            </TabsTrigger> */}
           </TabsList>
 
           <TabsContent value="hourly" className="space-y-6">
@@ -370,94 +274,6 @@ export default function Home() {
               </CardContent>
             </Card>
           </TabsContent>
-
-          {/* <TabsContent value="locations" className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card className="hover:shadow-lg transition-shadow duration-200">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-black">
-                    <Users className="h-5 w-5 text-orange-600" />
-                    Location Distribution
-                  </CardTitle>
-                  <CardDescription className="text-black">
-                    Usage percentage by parking area
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="h-64">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <PieChart>
-                        <Pie
-                          data={locationData}
-                          cx="50%"
-                          cy="50%"
-                          innerRadius={60}
-                          outerRadius={100}
-                          paddingAngle={5}
-                          dataKey="value"
-                        >
-                          {locationData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip
-                          contentStyle={{
-                            backgroundColor: "white",
-                            border: "1px solid #e2e8f0",
-                            borderRadius: "8px",
-                            boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-                          }}
-                        />
-                      </PieChart>
-                    </ResponsiveContainer>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="hover:shadow-lg transition-shadow duration-200">
-                <CardHeader>
-                  <CardTitle className="text-black">Location Details</CardTitle>
-                  <CardDescription className="text-black">
-                    Detailed breakdown by area
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {locationData.map((location) => (
-                      <div
-                        key={location.name}
-                        className="flex items-center justify-between p-4 border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div
-                            className="w-4 h-4 rounded-full"
-                            style={{ backgroundColor: location.color }}
-                          />
-                          <div>
-                            <div className="font-medium text-slate-900">
-                              {location.name}
-                            </div>
-                            <div className="text-sm text-slate-500">
-                              {Math.round((totalSpots * location.value) / 100)}{" "}
-                              spots
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <div className="font-semibold text-slate-900">
-                            {location.value}%
-                          </div>
-                          <div className="text-sm text-slate-500">
-                            utilization
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card> */}
-          {/* </div>
-          </TabsContent> */}
         </Tabs>
       </main>
     </div>

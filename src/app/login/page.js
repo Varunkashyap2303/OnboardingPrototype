@@ -1,32 +1,31 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Car, LogOut, Settings } from 'lucide-react';
-
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Car, LogOut, Settings } from "lucide-react";
 
 const PASSWORD = process.env.NEXT_PUBLIC_LOGIN_PASSWORD;
 
 export default function LoginPage() {
   const router = useRouter();
-  const [input, setInput] = useState('');
-  const [error, setError] = useState('');
+  const [input, setInput] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem('loggedIn') === 'true') {
-      router.push('/');
+    if (localStorage.getItem("loggedIn") === "true") {
+      router.push("/");
     }
   }, [router]);
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (input === PASSWORD) {
-      localStorage.setItem('loggedIn', 'true');
-      router.push('/');
+      localStorage.setItem("loggedIn", "true");
+      router.push("/");
     } else {
-      setError('Incorrect password');
+      setError("Incorrect password");
     }
   };
 
@@ -51,29 +50,32 @@ export default function LoginPage() {
           </div>
         </div>
       </header>
-    <main className="min-h-screen flex items-center justify-center bg-slate-100">
-      <form onSubmit={handleLogin} className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm space-y-4">
-        <h1 className="text-xl font-bold text-center text-gray-500">Login</h1>
-        <div className='space-y-4'>
-        <Input
-          type="password"
-          placeholder="Enter password"
-          value={input}
-          className="w-full"
-          onChange={(e) => setInput(e.target.value)}
-        />
-
-        {error && <p className="text-sm text-red-500">{error}</p>}
-
-        <Button
-          type="submit"
-          className=" bg-gray-500 text-white hover:bg-gray-600 px-6 mx-auto block"
+      <main className="min-h-screen flex items-center justify-center bg-slate-100">
+        <form
+          onSubmit={handleLogin}
+          className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm space-y-4"
         >
-          Login
-        </Button>
-        </div>
-      </form>
-    </main>
+          <h1 className="text-xl font-bold text-center text-gray-500">Login</h1>
+          <div className="space-y-4">
+            <Input
+              type="password"
+              placeholder="Enter password"
+              value={input}
+              className="w-full text-gray-500"
+              onChange={(e) => setInput(e.target.value)}
+            />
+
+            {error && <p className="text-sm text-red-500">{error}</p>}
+
+            <Button
+              type="submit"
+              className=" bg-gray-500 text-white hover:bg-gray-600 px-6 mx-auto block"
+            >
+              Login
+            </Button>
+          </div>
+        </form>
+      </main>
     </div>
   );
 }
