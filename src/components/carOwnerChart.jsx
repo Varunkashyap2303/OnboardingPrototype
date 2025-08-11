@@ -7,6 +7,7 @@ import {
   TabPanel,
   TabPanels,
 } from "@tremor/react";
+import React from "react";
 
 const data = [
   { year: "2017", "Vehicle Ownership": 209495, Population: 3000000 },
@@ -41,7 +42,7 @@ export default function VehicleChartTabs() {
         <TabGroup defaultIndex={0}>
           <TabList className="space-x-0 bg-tremor-background-muted">
             {summary.map((tab, index) => (
-              <>
+              <React.Fragment key={tab.name}>
                 <Tab
                   key={tab.name}
                   className="py-4 pl-5 pr-12 text-left ui-selected:bg-white ui-selected:shadow-inner ui-selected:font-semibold ui-focus-visible:ring-2 ui-focus-visible:ring-blue-400 ui-focus-visible:ring-offset-2 text-xs sm:text-sm md:text-base"
@@ -56,7 +57,7 @@ export default function VehicleChartTabs() {
                     aria-hidden={true}
                   />
                 )}
-              </>
+              </React.Fragment>
             ))}
           </TabList>
 
