@@ -157,25 +157,12 @@ export default function Home() {
               Map View of Parking Spots
             </CardTitle>
             <CardDescription className="text-black text-xs sm:text-sm md:text-base">
-              Real-time mock availability of parking bays
+              Real-time and predicted availability of parking bays
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[400px]">
             <ParkingMap />
           </CardContent>
-          {/* <button
-            onClick={() => {
-              const lat = -37.8179,
-                lon = 144.9691;
-              console.log("[DEBUG] manual fetch", { lat, lon });
-              fetch(`/api/parking?lat=${lat}&lon=${lon}`)
-                .then((r) => r.json())
-                .then((d) => console.log("[DEBUG] response", d));
-            }}
-            className="absolute z-[1000] top-2 left-2 bg-white/90 px-3 py-1 rounded shadow bg-color-black"
-          >
-            Debug Fetch
-          </button> */}
         </Card>
 
         {/* Current Status */}

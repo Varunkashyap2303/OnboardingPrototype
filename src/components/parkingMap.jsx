@@ -257,7 +257,7 @@ export default function ParkingMap() {
   }, [isLoading]);
 
   return (
-    <div className="h-full w-full">
+    <div className="relative z-0 h-full w-full">
       {isLoading && (
         <div className="absolute top-4 right-4 z-[1000] bg-blue-500 text-white px-3 py-2 rounded shadow">
           Loading parking recommendations...
