@@ -307,7 +307,7 @@ export default function ParkingMap() {
                 <br />
                 <strong>Distance:</strong> {Math.round(r.distance_m)} m
                 <br />
-                <strong>Score:</strong> {r.score?.toFixed(2)}
+                {/* <strong>Score:</strong> {r.score?.toFixed(2)} */}
               </div>
             </Popup>
           </Marker>

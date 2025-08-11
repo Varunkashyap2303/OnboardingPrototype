@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, iframe } from "react";
 import {
   Card,
   CardContent,
@@ -146,7 +146,32 @@ export default function Home() {
           <CarOwnerChart className="w-full" />
         </div>
 
-        {/* Parking map */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-black text-sm sm:text-lg md:text-base">
+              <MapPin className="h-5 w-5 text-blue-600" />
+              Real-time availability of parking bays
+            </CardTitle>
+            <CardDescription className="text-black text-xs sm:text-sm md:text-base">
+              Map View of Parking Spots
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="relative w-full aspect-[4/3] max-h-[80vh]">
+              <iframe
+                src="https://data.melbourne.vic.gov.au/explore/embed/dataset/on-street-parking-bay-sensors/custom/?dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiQ09VTlQiLCJ5QXhpcyI6ImJheV9pZCIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiNFNTBFNTYifV0sInhBeGlzIjoibGFzdHVwZGF0ZWQiLCJtYXhwb2ludHMiOjUwLCJzb3J0IjoiIiwidGltZXNjYWxlIjoiZGF5IiwiY29uZmlnIjp7ImRhdGFzZXQiOiJvbi1zdHJlZXQtcGFya2luZy1iYXktc2Vuc29ycyIsIm9wdGlvbnMiOnt9fX1dLCJ0aW1lc2NhbGUiOiIiLCJkaXNwbGF5TGVnZW5kIjp0cnVlLCJhbGlnbk1vbnRoIjp0cnVlfQ%3D%3D&static=false&datasetcard=false"
+                className="absolute inset-0 h-full w-full rounded-md"
+                frameborder="0"
+                scrolling="no"
+                loading="lazy"
+                allowFullScreen
+                title="On-street Parking Map"
+              ></iframe>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Predicted parking map */}
         <Card
           id="find-a-spot"
           className="my-8 hover:shadow-lg transition-shadow duration-200"
@@ -154,10 +179,10 @@ export default function Home() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-black text-sm sm:text-lg md:text-base">
               <MapPin className="h-5 w-5 text-blue-600" />
-              Map View of Parking Spots
+              Predicted availability of parking bays
             </CardTitle>
             <CardDescription className="text-black text-xs sm:text-sm md:text-base">
-              Real-time and predicted availability of parking bays
+              Map View of Parking Spots
             </CardDescription>
           </CardHeader>
           <CardContent className="h-[400px]">
