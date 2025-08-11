@@ -138,9 +138,9 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-16">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-16 ">
         <div
-          className="w-full text-xs sm:text-sm md:text-base"
+          className="w-full text-xs sm:text-sm md:text-base pb-12"
           id="data-insight"
         >
           <CarOwnerChart className="w-full" />
@@ -161,7 +161,7 @@ export default function Home() {
               <iframe
                 src="https://data.melbourne.vic.gov.au/explore/embed/dataset/on-street-parking-bay-sensors/custom/?dataChart=eyJxdWVyaWVzIjpbeyJjaGFydHMiOlt7InR5cGUiOiJjb2x1bW4iLCJmdW5jIjoiQ09VTlQiLCJ5QXhpcyI6ImJheV9pZCIsInNjaWVudGlmaWNEaXNwbGF5Ijp0cnVlLCJjb2xvciI6IiNFNTBFNTYifV0sInhBeGlzIjoibGFzdHVwZGF0ZWQiLCJtYXhwb2ludHMiOjUwLCJzb3J0IjoiIiwidGltZXNjYWxlIjoiZGF5IiwiY29uZmlnIjp7ImRhdGFzZXQiOiJvbi1zdHJlZXQtcGFya2luZy1iYXktc2Vuc29ycyIsIm9wdGlvbnMiOnt9fX1dLCJ0aW1lc2NhbGUiOiIiLCJkaXNwbGF5TGVnZW5kIjp0cnVlLCJhbGlnbk1vbnRoIjp0cnVlfQ%3D%3D&static=false&datasetcard=false"
                 className="absolute inset-0 h-full w-full rounded-md"
-                frameborder="0"
+                frameBorder="0"
                 scrolling="no"
                 loading="lazy"
                 allowFullScreen

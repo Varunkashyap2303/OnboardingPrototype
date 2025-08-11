@@ -32,10 +32,10 @@ export default function VehicleChartTabs() {
   return (
     <>
       <h3 className="text-black text-xl sm:text-lg font-semibold">
-        Vehicle Ownership vs Population
+        Data Insights
       </h3>
       <p className="mt-1 text-black text-sm md:text-base">
-        Data comparison from 2017 to 2021
+        Data comparison in vehicle ownership and population from 2017 to 2021
       </p>
 
       <Card className="mt-6 overflow-hidden p-0">
@@ -75,7 +75,7 @@ export default function VehicleChartTabs() {
                   showGradient={true}
                   showLegend={false}
                   yAxisWidth={60}
-                  className="hidden h-96 sm:block text-black text-xs sm:text-sm md:text-base"
+                  className="block h-64 sm:h-80 md:h-96"
                   customTooltip={({ payload }) => (
                     <div className="bg-white p-2 rounded text-black shadow">
                       {payload?.map((entry, index) => (
